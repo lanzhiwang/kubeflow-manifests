@@ -1,0 +1,88 @@
+
+```bash
+clusterrole
+kubeflow-istio-admin
+kubeflow-istio-edit
+kubeflow-istio-view
+
+gateway.networking.istio.io
+kubeflow-gateway
+
+$
+```
+
+## mlops 示例
+
+```bash
+[root@gitee-ai-region1-master-1 ~]# kubectl -n kubeflow get gateways.networking.istio.io kubeflow-gateway -o yaml
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  annotations:
+    cpaas.io/creator: admin
+    cpaas.io/updated-at: "2023-09-07T09:57:07Z"
+    meta.helm.sh/release-name: mlops
+    meta.helm.sh/release-namespace: default
+  creationTimestamp: "2023-09-07T09:57:07Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  name: kubeflow-gateway
+  namespace: kubeflow
+  resourceVersion: "3181852"
+  uid: 01f38fba-0795-4f43-aded-c4f27e52264e
+spec:
+  selector:
+    istio: istio-system-ml-gatway
+  servers:
+  - hosts:
+    - '*'
+    port:
+      name: http
+      number: 80
+      protocol: HTTP
+    tls:
+      httpsRedirect: true
+  - hosts:
+    - '*'
+    port:
+      name: https
+      number: 443
+      protocol: HTTPS
+    tls:
+      credentialName: cpaas-https-certs
+      mode: SIMPLE
+[root@gitee-ai-region1-master-1 ~]#
+
+[root@gitee-ai-region1-master-1 ~]# kubectl -n istio-system  get secret cpaas-https-certs -o yaml
+apiVersion: v1
+data:
+  tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURJekNDQWd1Z0F3SUJBZ0lRUFdtN1I0SzdqWXhvd2ZCTUlKNldPREFOQmdrcWhraUc5dzBCQVFzRkFEQVEKTVE0d0RBWURWUVFLRXdWamNHRmhjekFlRncweU16QTVNRGN3TmpBM01UbGFGdzB6TXpBNU1EUXdOakEzTVRsYQpNQkl4RURBT0JnTlZCQW9UQjJ0MVltVXRZMkV3Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURHSXA3NkFabjJDZkt1dUhNSjdzNTVqZjhWZ3dMTDBDdmI3RXAvdXpjWGxuSFFsajFnQjZxZDZxTDQKbGZjVkdKYzdjWmdwVDNKdThMenhoa3BHcEl4T3FubUdxenhuTDZyeTROdlVrRThCNUJaR0t3Vi9jTDFnQVRrbgpiazNWQXc0MmxRMzJ4cnVMSEZKeldPZ0V5RjJCVzVzU2VrTklkaWdKWTF0SnVGK3RpajhIVFhxZXdxTmMvbGJZCjFrcm5tZEk1UFNHdDlnSTFXZ0JJTHQ0MHFVRWw1NXV3NnZjNjlBRURYbkhPTEVPMnNPeTduK2kra21Rd3JpbUYKQkdBN1pqcGFDNmFkc2FrSjVCRWs2OTZ2bHlwN2cxcmE3dEs0YnY3RWtyczJJSzFtSHBpdDZpdlJRRFg2UmRvRgpMSEdPNXd0YnZ2cXc5TUJCcndrcDc1U1d1a0MzQWdNQkFBR2pkekIxTUE0R0ExVWREd0VCL3dRRUF3SUZvREFNCkJnTlZIUk1CQWY4RUFqQUFNQjhHQTFVZEl3UVlNQmFBRk1IeWh4ZFk4T0hud3hybCs3YVUzRmZQd3FVK01EUUcKQTFVZEVRUXRNQ3VDQldOd1lXRnpod1IvQUFBQmh3UUtBTWpTaHdRS0FNalNod1FLQU1qU2h3UnFEZnJHaHdScQpEZnJHTUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFBVFcxenYvSVlxanFnWDg5Qk9DNHdsTG1pNFRkYVZhb25pCmVGRTZMdW5jc1hyVjdSUXN4MTd6Y2JGbUpUTWlQL05Wa0VwUXVaSTdiUlVBZjVRYWRJNXBpUXJwU3R2bWs5ZFQKcU1iaE1ucXFPRCtidUlzSEEwb0VpMEVFZ1lWODFGV0FsNTdHT2IrcUlnZjI0ZklNSExyWDA5L200Rmd6VzJBVgp3eUswRGpUYW04ckNyWFhMZ2M5T3g3QnZISmFtS2N0ZDhlQTNMWXFDc2FwZ3RvdkNxVWpCNVAxbWxDNm0zWDBvCmNlTVlySW9iUjFaQVNQOUFmV3ZNWk9BblBjRlRKMkpmZEdSS090dFVxcTRBNXQ2R2ZBQkdMci9MRDBIYk5HWEkKWk1XM2VENjFORXVFR2tLU1pEbG5pQmh4WXRaSGovZUYxVVQxeFJjRy9PUVowM0JrR0dMZgotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+  tls.key: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcEFJQkFBS0NBUUVBeGlLZStnR1o5Z255cnJoekNlN09lWTMvRllNQ3k5QXIyK3hLZjdzM0Y1WngwSlk5CllBZXFuZXFpK0pYM0ZSaVhPM0dZS1U5eWJ2Qzg4WVpLUnFTTVRxcDVocXM4WnkrcTh1RGIxSkJQQWVRV1Jpc0YKZjNDOVlBRTVKMjVOMVFNT05wVU45c2E3aXh4U2Mxam9CTWhkZ1Z1YkVucERTSFlvQ1dOYlNiaGZyWW8vQjAxNgpuc0tqWFA1VzJOWks1NW5TT1QwaHJmWUNOVm9BU0M3ZU5LbEJKZWVic09yM092UUJBMTV4eml4RHRyRHN1NS9vCnZwSmtNSzRwaFFSZ08yWTZXZ3VtbmJHcENlUVJKT3ZlcjVjcWU0TmEydTdTdUc3K3hKSzdOaUN0Wmg2WXJlb3IKMFVBMStrWGFCU3h4anVjTFc3NzZzUFRBUWE4SktlK1VscnBBdHdJREFRQUJBb0lCQVFDUWNHeTBsTFpJUnJoRAo1dkwyS3NFYW5BbDVCU2prcTcxTmRkUlppWUdBRUl5b0l0NWJRenQrSTY3cXlXaDJXSmJuSHNodVZSeDNBOGk1Cnljd2I4NWpWUURHWG12MU51OUpEZk9qRTdPNnIwanJxckRJMTFWbzR3cXVIczBIS0o1QVUrbFJUc2t6Ri9MK2UKbHhHTmF3Ty9hYWlDcjk2YzFJWWJVZk1hcXU0VTg0clZ2ZkxOTmc0ZlJ0RmM4b0JWbTBXUFlRZm1pOVNRUnBSbApwRU5CbERLdng5eXAvZ0ZQcm5zUWU0UjVseUd5bTE4OTlzN2dwN3ZuME5nSUFpQVhlcFpoSU9FOC9Eck1oTHp4CkV6d3RMV096TGtKdkpwR2EwVnhuWklwN1J3ZHVVVEdKYWJFVC9YbjkrRFhUV3JvejVwUjR6RDJ3M3NkYnpYd0kKQytIRERpWUJBb0dCQU9UdHdaRXI0Q054bExORW5TZkRlVjAxYjNzNVlSQW96dFplNkUvR2JTM0FEaXZKVHFJSQpTVkF5QWh6R0lFMURQbXpFNytuRnhLOE9ZY21ZcHdLSDNiTHFMaTFYQ2xvaUlZZGF6WDVPODJWbGVOc0Y2MnkvCmJ0dmdCWThKVXk2ZDhtbHBQaUsxZUxlcHZ2eG5qVFFJY0ZJbUZBU0NMZ1lud0Y0Slc3emsyWEIvQW9HQkFOMlEKcXo2YnBYdUV3MllBa2N6WmorKzZZVlIwSWhiRGhsWnRXQ3QyZ3NoeURYOFIwZkQ4NmJ1Z016MUJndnhtYm5YaAova21iRDcyZnZtYW1HRGl5NEQ3dDhLcFRzdGNzc1N0ZHFqandHekViYm9VcFU2UUpSaVJOcDlOYkxTakRQVlVGCkZWaUNsTlgxWVdFOWd3d1FmWW1Ma2FLeG45aDYzdS94Q2U0L21KUEpBb0dBTFdPK2wwdjl1c2xRVkdMc1RmQUIKNWlzc0dXQjlFRGtuR1hYajFiMWY5RXc2QXhCODJMK1AyYWl3cG9mWjY3ZkRic2wxVUFKNFJzVXhPa2xjQTdKdwprSUxCK1JkaTVCQVVXY1AxTG0vMDdrdTZOS0x0MUxmNEFQeGYzY1paaWNxalA2Y3dQSzJDYTlmcUdCMW43OE1rCmtnVWV2dTRZdGZ1M3RtMWdsUWxDMjMwQ2dZRUFpMTEvU1k5UHhPVWFuMk9HVWtzYkxaaVh0aTZpYnAwb045N3AKa2RVbXFIeU5IcnVQeWJ6Y0xJZTFFemZNODRSZXdNbVpVS1UzZm5nbnBKdWZLckxoT05Ra0NJOURNL1BKc1ZSbQpTUkJHbWxuOTU4YTU5TGxjcEdNd1NGTFdrZ2hVNE5Da3Y1ckxrZFdhSGpjNTRmSFJkUjRVU2pqZUthWUg2dmM3CjN0K2owbmtDZ1lBZzZ6SkZxdHUzTDZEci9XYk95NlYxVDB6dWpCVnhFUGxOVE1ER1VrWElXUU1Tdkd4RHJqcnkKUTJKeGtJNE9LUEo0N2tiSDJQcndTUWE5WWp4KzJ6L3N3dVB2MG1INUVVTVRUb2RaWllseHdmK003dUVyaU5QbwpicCs4M3liTVE5MHJPNXViUEhZZUV6ZTBIL0NhbHdLZExDSzU2QlZ2dXVZak9iRXRtL2NWOWc9PQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo=
+kind: Secret
+metadata:
+  annotations:
+    cpaas.io/creator: admin
+    cpaas.io/updated-at: "2023-09-07T09:57:06Z"
+    meta.helm.sh/release-name: mlops
+    meta.helm.sh/release-namespace: default
+  creationTimestamp: "2023-09-07T09:57:06Z"
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  name: cpaas-https-certs
+  namespace: istio-system
+  resourceVersion: "3181307"
+  uid: 32b7b1ee-9f3f-47e7-acaf-824360256306
+type: kubernetes.io/tls
+[root@gitee-ai-region1-master-1 ~]#
+
+
+
+
+
+
+
+
+
+
+```
