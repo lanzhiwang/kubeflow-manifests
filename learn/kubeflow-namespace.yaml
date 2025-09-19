@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    config.kubernetes.io/origin: |
+      path: ../common/kubeflow-namespace/base/namespace.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    control-plane: kubeflow
+    istio-injection: enabled
+    pod-security.kubernetes.io/enforce: baseline
+  name: kubeflow

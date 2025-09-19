@@ -1,0 +1,60 @@
+ghcr.io/dexidp/dex:v2.41.1
+ghcr.io/kubeflow/kubeflow/poddefaults-webhook:v1.10.0
+ghcr.io/kubeflow/kfp-cache-server:2.5.0
+ghcr.io/kubeflow/katib/katib-ui:v0.18.0
+ghcr.io/kubeflow/kubeflow/central-dashboard:v1.10.0
+ghcr.io/kubeflow/kubeflow/jupyter-web-app:v1.10.0
+ghcr.io/kubeflow/katib/katib-controller:v0.18.0
+ghcr.io/kubeflow/katib/katib-db-manager:v0.18.0
+ghcr.io/kserve/models-web-app:v0.14.0
+ghcr.io/kubeflow/kfp-metadata-writer:2.5.0
+ghcr.io/kubeflow/kfp-api-server:2.5.0
+ghcr.io/kubeflow/kfp-persistence-agent:2.5.0
+ghcr.io/kubeflow/kfp-scheduled-workflow-controller:2.5.0
+ghcr.io/kubeflow/kfp-frontend:2.5.0
+ghcr.io/kubeflow/kfp-viewer-crd-controller:2.5.0
+ghcr.io/kubeflow/kfp-visualization-server:2.5.0
+ghcr.io/kubeflow/kubeflow/notebook-controller:v1.10.0
+ghcr.io/kubeflow/kubeflow/profile-controller:v1.10.0
+ghcr.io/kubeflow/kubeflow/kfam:v1.10.0
+ghcr.io/kubeflow/kubeflow/pvcviewer-controller:v1.10.0
+ghcr.io/kubeflow/spark-operator/controller:2.2.0
+ghcr.io/kubeflow/kubeflow/tensorboard-controller:v1.10.0
+ghcr.io/kubeflow/kubeflow/tensorboards-web-app:v1.10.0
+ghcr.io/kubeflow/training-v1/training-operator:v1-3f15cb8
+ghcr.io/kubeflow/kubeflow/volumes-web-app:v1.10.0
+ghcr.io/metacontroller/metacontroller:v4.11.22
+ghcr.io/kubeflow/kfp-metadata-envoy:2.5.0
+quay.io/jetstack/cert-manager-controller:v1.16.1
+quay.io/jetstack/cert-manager-cainjector:v1.16.1
+quay.io/jetstack/cert-manager-webhook:v1.16.1
+quay.io/brancz/kube-rbac-proxy:v0.18.0
+quay.io/brancz/kube-rbac-proxy:v0.13.1
+quay.io/brancz/kube-rbac-proxy:v0.8.0
+quay.io/argoproj/workflow-controller:v3.5.14
+quay.io/oauth2-proxy/oauth2-proxy:v7.7.1
+gcr.io/istio-release/proxyv2:1.26.1
+gcr.io/istio-release/pilot:1.26.1
+# gcr.io/knative-releases/knative.dev/serving/cmd/activator@sha256:cc39d40985f7b37ba384a857d194a24ac5eae7e204aac4ed9bf4ebfd8d62e721
+gcr.io/knative-releases/knative.dev/serving/cmd/activator:v1.16.2
+# gcr.io/knative-releases/knative.dev/serving/cmd/autoscaler@sha256:59c2e7ad52cea17bedfc2aca9b9e33060bb34f04d35fd71fe61147bcbdb881e4
+gcr.io/knative-releases/knative.dev/serving/cmd/autoscaler:v1.16.2
+# gcr.io/knative-releases/knative.dev/serving/cmd/controller@sha256:0e47362d044f8eac84595ed0a9fdf22e5dd5a07cc7a5df74e93eb5ad17ad4827
+gcr.io/knative-releases/knative.dev/serving/cmd/controller:v1.16.2
+# gcr.io/knative-releases/knative.dev/serving/cmd/webhook@sha256:d42e2f83c9018779465860fdc67ce6ada3eac8ba8c47c5c2127c0bb45f9b328a
+gcr.io/knative-releases/knative.dev/serving/cmd/webhook:v1.16.2
+# gcr.io/knative-releases/knative.dev/net-istio/cmd/controller@sha256:e70bc675f97778da144157f125b3001124ba7a5903b85dab9e77776352fea1c7
+gcr.io/knative-releases/knative.dev/net-istio/cmd/controller:v1.16.0
+# gcr.io/knative-releases/knative.dev/net-istio/cmd/webhook@sha256:7d76a6d42d139ed53aae3ca2dfd600b1c776eb85a17af64dd1b604176a4b132a
+gcr.io/knative-releases/knative.dev/net-istio/cmd/webhook:v1.16.0
+gcr.io/istio-release/install-cni:1.26.1
+gcr.io/ml-pipeline/minio:RELEASE.2019-08-14T20-37-41Z-license-compliance
+gcr.io/ml-pipeline/mysql:8.0.26
+gcr.io/tfx-oss-public/ml_metadata_store_server:1.14.0
+# mysql:8.0.29
+docker.io/library/mysql:8.0.29
+# kserve/kserve-controller:v0.15.0
+docker.io/kserve/kserve-controller:v0.15.0
+# kserve/kserve-localmodel-controller:v0.15.0
+docker.io/kserve/kserve-localmodel-controller:v0.15.0
+public.ecr.aws/docker/library/python:3.12

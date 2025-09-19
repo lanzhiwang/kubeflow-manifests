@@ -1,0 +1,445 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/dex/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ReplacementTransformer
+      - configuredIn: ../common/dex/overlays/oauth2-proxy/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/dex/base/namespace.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    pod-security.kubernetes.io/enforce: restricted
+  name: auth
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/dex/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ReplacementTransformer
+      - configuredIn: ../common/dex/overlays/oauth2-proxy/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/dex/base/crds.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: authcodes.dex.coreos.com
+spec:
+  group: dex.coreos.com
+  names:
+    kind: AuthCode
+    listKind: AuthCodeList
+    plural: authcodes
+    singular: authcode
+  scope: Namespaced
+  versions:
+  - name: v1
+    schema:
+      openAPIV3Schema:
+        type: object
+        x-kubernetes-preserve-unknown-fields: true
+    served: true
+    storage: true
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/dex/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ReplacementTransformer
+      - configuredIn: ../common/dex/overlays/oauth2-proxy/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/dex/base/crds.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: dex
+  namespace: auth
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/dex/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ReplacementTransformer
+      - configuredIn: ../common/dex/overlays/oauth2-proxy/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/dex/base/crds.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: dex
+rules:
+- apiGroups:
+  - dex.coreos.com
+  resources:
+  - '*'
+  verbs:
+  - '*'
+- apiGroups:
+  - apiextensions.k8s.io
+  resources:
+  - customresourcedefinitions
+  verbs:
+  - create
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/dex/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ReplacementTransformer
+      - configuredIn: ../common/dex/overlays/oauth2-proxy/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/dex/base/crds.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: dex
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: dex
+subjects:
+- kind: ServiceAccount
+  name: dex
+  namespace: auth
+---
+apiVersion: v1
+data:
+  config.yaml: |
+    issuer: http://dex.auth.svc.cluster.local:5556/dex
+    storage:
+      type: kubernetes
+      config:
+        inCluster: true
+    web:
+      http: 0.0.0.0:5556
+    logger:
+      level: "debug"
+      format: text
+    oauth2:
+      skipApprovalScreen: true
+    enablePasswordDB: true
+    staticPasswords:
+    - email: user@example.com
+      hashFromEnv: DEX_USER_PASSWORD
+      username: user
+      userID: "15841185641784"
+    staticClients:
+    # https://github.com/dexidp/dex/pull/1664
+    - idEnv: OIDC_CLIENT_ID
+      redirectURIs: ["/oauth2/callback"]
+      name: 'Dex Login Application'
+      secretEnv: OIDC_CLIENT_SECRET
+kind: ConfigMap
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/dex/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ReplacementTransformer
+      - configuredIn: ../common/dex/overlays/oauth2-proxy/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/dex/base/config-map.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: dex
+  namespace: auth
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/dex/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ReplacementTransformer
+      - configuredIn: ../common/dex/overlays/oauth2-proxy/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/dex/base/dex-passwords.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: dex-passwords
+  namespace: auth
+stringData:
+  DEX_USER_PASSWORD: $2y$12$4K/VkmDd1q1Orb3xAt82zu8gk7Ad6ReFR4LCP9UeYE90NLiN9Df72
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/dex/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ReplacementTransformer
+      - configuredIn: ../common/dex/overlays/oauth2-proxy/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/dex/base/service.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: dex
+  namespace: auth
+spec:
+  ports:
+  - name: dex
+    port: 5556
+    protocol: TCP
+    targetPort: 5556
+  selector:
+    app: dex
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/dex/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ReplacementTransformer
+      - configuredIn: ../common/dex/overlays/oauth2-proxy/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/dex/base/deployment.yaml
+  labels:
+    app: dex
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: dex
+  namespace: auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dex
+  template:
+    metadata:
+      labels:
+        app: dex
+    spec:
+      containers:
+      - command:
+        - dex
+        - serve
+        - /etc/dex/cfg/config.yaml
+        env:
+        - name: KUBERNETES_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        envFrom:
+        - secretRef:
+            name: dex-oidc-client
+        - secretRef:
+            name: dex-passwords
+        image: ghcr.io/dexidp/dex:v2.41.1
+        name: dex
+        ports:
+        - containerPort: 5556
+          name: http
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
+        volumeMounts:
+        - mountPath: /etc/dex/cfg
+          name: config
+      serviceAccountName: dex
+      volumes:
+      - configMap:
+          items:
+          - key: config.yaml
+            path: config.yaml
+          name: dex
+        name: config
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ReplacementTransformer
+      - configuredIn: ../common/dex/overlays/oauth2-proxy/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/dex/overlays/istio/virtual-service.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: dex
+  namespace: auth
+spec:
+  gateways:
+  - kubeflow/kubeflow-gateway
+  hosts:
+  - '*'
+  http:
+  - match:
+    - uri:
+        prefix: /dex/
+    route:
+    - destination:
+        host: dex.auth.svc.cluster.local
+        port:
+          number: 5556
+---
+apiVersion: v1
+data:
+  OIDC_CLIENT_ID: a3ViZWZsb3ctb2lkYy1hdXRoc2VydmljZQ==
+  OIDC_CLIENT_SECRET: cFVCbkJPWTgwU25YZ2ppYlRZTTlaV056WTJ4cmVOR1Fvaw==
+kind: Secret
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/dex/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../common/dex/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ReplacementTransformer
+      - configuredIn: ../common/dex/overlays/oauth2-proxy/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      configuredIn: ../common/dex/base/kustomization.yaml
+      configuredBy:
+        apiVersion: builtin
+        kind: SecretGenerator
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: dex-oidc-client
+  namespace: auth
+type: Opaque

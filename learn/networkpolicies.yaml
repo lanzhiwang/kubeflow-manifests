@@ -1,0 +1,725 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/cache-server.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: cache-server
+  namespace: kubeflow
+spec:
+  ingress:
+  - ports:
+    - port: 8443
+      protocol: TCP
+  podSelector:
+    matchExpressions:
+    - key: app
+      operator: In
+      values:
+      - cache-server
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/centraldashboard.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: centraldashboard
+  namespace: kubeflow
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchExpressions:
+        - key: kubernetes.io/metadata.name
+          operator: In
+          values:
+          - istio-system
+    - podSelector: {}
+  podSelector:
+    matchExpressions:
+    - key: app
+      operator: In
+      values:
+      - centraldashboard
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/default-allow-same-namespace.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: default-allow-same-namespace
+  namespace: kubeflow
+spec:
+  ingress:
+  - from:
+    - podSelector: {}
+  podSelector: {}
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/jupyter-web-app.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: jupyter-web-app
+  namespace: kubeflow
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchExpressions:
+        - key: kubernetes.io/metadata.name
+          operator: In
+          values:
+          - istio-system
+    - podSelector: {}
+  podSelector:
+    matchExpressions:
+    - key: app
+      operator: In
+      values:
+      - jupyter-web-app
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/katib-controller.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: katib-controller
+  namespace: kubeflow
+spec:
+  ingress:
+  - ports:
+    - port: 8443
+      protocol: TCP
+  podSelector:
+    matchExpressions:
+    - key: katib.kubeflow.org/component
+      operator: In
+      values:
+      - controller
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/katib-db-manager.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: katib-db-manager
+  namespace: kubeflow
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchExpressions:
+        - key: app.kubernetes.io/part-of
+          operator: In
+          values:
+          - kubeflow-profile
+    - podSelector: {}
+  podSelector:
+    matchExpressions:
+    - key: katib.kubeflow.org/component
+      operator: In
+      values:
+      - db-manager
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/katib-ui.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: katib-ui
+  namespace: kubeflow
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchExpressions:
+        - key: kubernetes.io/metadata.name
+          operator: In
+          values:
+          - istio-system
+  podSelector:
+    matchExpressions:
+    - key: katib.kubeflow.org/component
+      operator: In
+      values:
+      - ui
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/kserve.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: kserve
+  namespace: kubeflow
+spec:
+  ingress:
+  - ports:
+    - port: 9443
+      protocol: TCP
+  podSelector:
+    matchExpressions:
+    - key: control-plane
+      operator: In
+      values:
+      - kserve-controller-manager
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/kserve-models-web-app.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: kserve-models-web-app
+  namespace: kubeflow
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchExpressions:
+        - key: kubernetes.io/metadata.name
+          operator: In
+          values:
+          - istio-system
+  podSelector:
+    matchExpressions:
+    - key: app.kubernetes.io/component
+      operator: In
+      values:
+      - kserve-models-web-app
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/metadata-grpc-server.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: metadata-grpc-server
+  namespace: kubeflow
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchExpressions:
+        - key: app.kubernetes.io/part-of
+          operator: In
+          values:
+          - kubeflow-profile
+    - podSelector: {}
+  podSelector:
+    matchExpressions:
+    - key: component
+      operator: In
+      values:
+      - metadata-grpc-server
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/metadata-envoy.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: metatada-envoy
+  namespace: kubeflow
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchExpressions:
+        - key: kubernetes.io/metadata.name
+          operator: In
+          values:
+          - istio-system
+    - podSelector: {}
+  podSelector:
+    matchExpressions:
+    - key: component
+      operator: In
+      values:
+      - metadata-envoy
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/minio.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: minio
+  namespace: kubeflow
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchExpressions:
+        - key: app.kubernetes.io/part-of
+          operator: In
+          values:
+          - kubeflow-profile
+    - namespaceSelector:
+        matchExpressions:
+        - key: kubernetes.io/metadata.name
+          operator: In
+          values:
+          - istio-system
+    - podSelector: {}
+  podSelector:
+    matchExpressions:
+    - key: app
+      operator: In
+      values:
+      - minio
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/ml-pipeline.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: ml-pipeline
+  namespace: kubeflow
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchExpressions:
+        - key: app.kubernetes.io/part-of
+          operator: In
+          values:
+          - kubeflow-profile
+    - namespaceSelector:
+        matchExpressions:
+        - key: kubernetes.io/metadata.name
+          operator: In
+          values:
+          - istio-system
+  podSelector:
+    matchExpressions:
+    - key: app
+      operator: In
+      values:
+      - ml-pipeline
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/ml-pipeline-ui.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: ml-pipeline-ui
+  namespace: kubeflow
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchExpressions:
+        - key: kubernetes.io/metadata.name
+          operator: In
+          values:
+          - istio-system
+  podSelector:
+    matchExpressions:
+    - key: app
+      operator: In
+      values:
+      - ml-pipeline-ui
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/model-registry.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: model-registry
+  namespace: kubeflow
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchExpressions:
+        - key: app.kubernetes.io/part-of
+          operator: In
+          values:
+          - kubeflow-profile
+    - namespaceSelector:
+        matchExpressions:
+        - key: kubernetes.io/metadata.name
+          operator: In
+          values:
+          - istio-system
+    ports:
+    - port: 8080
+      protocol: TCP
+    - port: 9090
+      protocol: TCP
+  podSelector:
+    matchExpressions:
+    - key: component
+      operator: In
+      values:
+      - model-registry-server
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/model-registry-ui.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: model-registry-ui
+  namespace: kubeflow
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchExpressions:
+        - key: kubernetes.io/metadata.name
+          operator: In
+          values:
+          - istio-system
+    - podSelector: {}
+  podSelector:
+    matchExpressions:
+    - key: app
+      operator: In
+      values:
+      - model-registry-ui
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/poddefaults.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: poddefaults
+  namespace: kubeflow
+spec:
+  ingress:
+  - ports:
+    - port: 4443
+      protocol: TCP
+  podSelector:
+    matchExpressions:
+    - key: app
+      operator: In
+      values:
+      - poddefaults
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/pvcviewer-webhook.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: pvcviewer-webhook
+  namespace: kubeflow
+spec:
+  ingress:
+  - ports:
+    - port: 9443
+      protocol: TCP
+  podSelector:
+    matchExpressions:
+    - key: app
+      operator: In
+      values:
+      - pvcviewer
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/spark-operator-webhook.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: spark-operator-webhook
+  namespace: kubeflow
+spec:
+  ingress:
+  - ports:
+    - port: 9443
+      protocol: TCP
+  podSelector:
+    matchExpressions:
+    - key: app.kubernetes.io/name
+      operator: In
+      values:
+      - spark-operator
+    - key: app.kubernetes.io/component
+      operator: In
+      values:
+      - webhook
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/tensorboards-web-app.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: tensorboards-web-app
+  namespace: kubeflow
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchExpressions:
+        - key: kubernetes.io/metadata.name
+          operator: In
+          values:
+          - istio-system
+    ports:
+    - port: 5000
+      protocol: TCP
+  podSelector:
+    matchExpressions:
+    - key: app
+      operator: In
+      values:
+      - tensorboards-web-app
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/training-operator-webhook.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: training-operator-webhook
+  namespace: kubeflow
+spec:
+  ingress:
+  - ports:
+    - port: 9443
+      protocol: TCP
+  podSelector:
+    matchExpressions:
+    - key: control-plane
+      operator: In
+      values:
+      - kubeflow-training-operator
+  policyTypes:
+  - Ingress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/networkpolicies/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/networkpolicies/base/volumes-web-app.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: volumes-web-app
+  namespace: kubeflow
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchExpressions:
+        - key: kubernetes.io/metadata.name
+          operator: In
+          values:
+          - istio-system
+    - podSelector: {}
+  podSelector:
+    matchExpressions:
+    - key: app
+      operator: In
+      values:
+      - volumes-web-app
+  policyTypes:
+  - Ingress

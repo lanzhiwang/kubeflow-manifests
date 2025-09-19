@@ -1,17 +1,27 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  labels:
-    control-plane: kserve-controller-manager
-    controller-tools.k8s.io: "1.0"
-    istio-injection: disabled
-  name: kserve
----
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
     controller-gen.kubebuilder.io/version: v0.16.2
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: clusterservingruntimes.serving.kserve.io
 spec:
   group: serving.kserve.io
@@ -4063,7 +4073,26 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
     controller-gen.kubebuilder.io/version: v0.16.2
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: clusterstoragecontainers.serving.kserve.io
 spec:
   group: serving.kserve.io
@@ -4790,7 +4819,26 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
     controller-gen.kubebuilder.io/version: v0.16.2
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: inferencegraphs.serving.kserve.io
 spec:
   group: serving.kserve.io
@@ -5424,8 +5472,27 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: kserve/serving-cert
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    cert-manager.io/inject-ca-from: kubeflow/serving-cert
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
     controller-gen.kubebuilder.io/version: v0.16.2
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: inferenceservices.serving.kserve.io
 spec:
   group: serving.kserve.io
@@ -26922,7 +26989,26 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
     controller-gen.kubebuilder.io/version: v0.16.2
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: localmodelcaches.serving.kserve.io
 spec:
   group: serving.kserve.io
@@ -27008,7 +27094,26 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
     controller-gen.kubebuilder.io/version: v0.16.2
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: localmodelnodegroups.serving.kserve.io
 spec:
   group: serving.kserve.io
@@ -27700,7 +27805,26 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
     controller-gen.kubebuilder.io/version: v0.16.2
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: localmodelnodes.serving.kserve.io
 spec:
   group: serving.kserve.io
@@ -27761,7 +27885,26 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
     controller-gen.kubebuilder.io/version: v0.16.2
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: servingruntimes.serving.kserve.io
 spec:
   group: serving.kserve.io
@@ -31813,7 +31956,26 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
     controller-gen.kubebuilder.io/version: v0.16.2
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: trainedmodels.serving.kserve.io
 spec:
   group: serving.kserve.io
@@ -31920,41 +32082,240 @@ spec:
     subresources:
       status: {}
 ---
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    cert-manager.io/inject-ca-from: kubeflow/serving-cert
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
+  creationTimestamp: null
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
+  name: inferenceservice.serving.kserve.io
+webhooks:
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    service:
+      name: kserve-webhook-server-service
+      namespace: kubeflow
+      path: /mutate-serving-kserve-io-v1beta1-inferenceservice
+  failurePolicy: Fail
+  name: inferenceservice.kserve-webhook-server.defaulter
+  rules:
+  - apiGroups:
+    - serving.kserve.io
+    apiVersions:
+    - v1beta1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - inferenceservices
+  sideEffects: None
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    service:
+      name: kserve-webhook-server-service
+      namespace: kubeflow
+      path: /mutate-pods
+  failurePolicy: Fail
+  name: inferenceservice.kserve-webhook-server.pod-mutator
+  namespaceSelector:
+    matchExpressions:
+    - key: control-plane
+      operator: DoesNotExist
+  objectSelector:
+    matchExpressions:
+    - key: serving.kserve.io/inferenceservice
+      operator: Exists
+  reinvocationPolicy: IfNeeded
+  rules:
+  - apiGroups:
+    - ""
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    resources:
+    - pods
+  sideEffects: None
+---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
   labels:
+    app: kserve
     app.kubernetes.io/instance: kserve-controller-manager
-    app.kubernetes.io/managed-by: kserve-controller-manager
-    app.kubernetes.io/name: kserve-controller-manager
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: kserve-controller-manager
-  namespace: kserve
+  namespace: kubeflow
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
   labels:
+    app: kserve
     app.kubernetes.io/instance: kserve-localmodel-controller-manager
-    app.kubernetes.io/managed-by: kserve-localmodel-controller-manager
-    app.kubernetes.io/name: kserve-localmodel-controller-manager
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: kserve-localmodel-controller-manager
-  namespace: kserve
+  namespace: kubeflow
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
   labels:
+    app: kserve
     app.kubernetes.io/instance: kserve-localmodelnode-agent
-    app.kubernetes.io/managed-by: kserve-localmodelnode-agent
-    app.kubernetes.io/name: kserve-localmodelnode-agent
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: kserve-localmodelnode-agent
-  namespace: kserve
+  namespace: kubeflow
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/models-web-app/base/rbac.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/component: kserve-models-web-app
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
+    kustomize.component: kserve-models-web-app
+  name: kserve-models-web-app
+  namespace: kubeflow
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: kserve-leader-election-role
-  namespace: kserve
+  namespace: kubeflow
 rules:
 - apiGroups:
   - coordination.k8s.io
@@ -31995,6 +32356,26 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: kserve-localmodel-manager-role
 rules:
 - apiGroups:
@@ -32072,6 +32453,26 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: kserve-localmodelnode-agent-role
 rules:
 - apiGroups:
@@ -32152,6 +32553,26 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: kserve-manager-role
 rules:
 - apiGroups:
@@ -32381,6 +32802,122 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/models-web-app/base/rbac.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/component: kserve-models-web-app
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
+    kustomize.component: kserve-models-web-app
+  name: kserve-models-web-app-cluster-role
+rules:
+- apiGroups:
+  - authorization.k8s.io
+  resources:
+  - subjectaccessreviews
+  verbs:
+  - create
+- apiGroups:
+  - ""
+  resources:
+  - namespaces
+  - pods
+  - pods/log
+  - events
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - serving.kserve.io
+  resources:
+  - inferenceservices
+  - inferenceservices/status
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - delete
+  - deletecollection
+  - patch
+  - update
+- apiGroups:
+  - serving.knative.dev
+  resources:
+  - services
+  - services/status
+  - routes
+  - routes/status
+  - configurations
+  - configurations/status
+  - revisions
+  - revisions/status
+  verbs:
+  - get
+  - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: kserve-proxy-role
 rules:
 - apiGroups:
@@ -32396,11 +32933,178 @@ rules:
   verbs:
   - create
 ---
+aggregationRule:
+  clusterRoleSelectors:
+  - matchLabels:
+      rbac.authorization.kubeflow.org/aggregate-to-kubeflow-kserve-admin: "true"
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
+    rbac.authorization.kubeflow.org/aggregate-to-kubeflow-admin: "true"
+  name: kubeflow-kserve-admin
+rules: []
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
+    rbac.authorization.kubeflow.org/aggregate-to-kubeflow-edit: "true"
+    rbac.authorization.kubeflow.org/aggregate-to-kubeflow-kserve-admin: "true"
+  name: kubeflow-kserve-edit
+rules:
+- apiGroups:
+  - serving.kserve.io
+  resources:
+  - inferencegraphs
+  - inferenceservices
+  - servingruntimes
+  - trainedmodels
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - delete
+  - deletecollection
+  - patch
+  - update
+- apiGroups:
+  - serving.knative.dev
+  resources:
+  - services
+  - services/status
+  - routes
+  - routes/status
+  - configurations
+  - configurations/status
+  - revisions
+  - revisions/status
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - delete
+  - deletecollection
+  - patch
+  - update
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
+    rbac.authorization.kubeflow.org/aggregate-to-kubeflow-view: "true"
+  name: kubeflow-kserve-view
+rules:
+- apiGroups:
+  - serving.kserve.io
+  resources:
+  - inferencegraphs
+  - inferenceservices
+  - servingruntimes
+  - trainedmodels
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - serving.knative.dev
+  resources:
+  - services
+  - services/status
+  - routes
+  - routes/status
+  - configurations
+  - configurations/status
+  - revisions
+  - revisions/status
+  verbs:
+  - get
+  - list
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: kserve-leader-election-rolebinding
-  namespace: kserve
+  namespace: kubeflow
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -32408,11 +33112,31 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: kserve-controller-manager
-  namespace: kserve
+  namespace: kubeflow
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: kserve-localmodel-manager-rolebinding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -32421,11 +33145,31 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: kserve-localmodel-controller-manager
-  namespace: kserve
+  namespace: kubeflow
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: kserve-localmodelnode-agent-rolebinding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -32434,11 +33178,31 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: kserve-localmodelnode-agent
-  namespace: kserve
+  namespace: kubeflow
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: kserve-manager-rolebinding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -32447,11 +33211,90 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: kserve-controller-manager
-  namespace: kserve
+  namespace: kubeflow
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/models-web-app/base/rbac.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/component: kserve-models-web-app
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
+    kustomize.component: kserve-models-web-app
+  name: kserve-models-web-app-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kserve-models-web-app-cluster-role
+subjects:
+- kind: ServiceAccount
+  name: kserve-models-web-app
+  namespace: kubeflow
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: kserve-proxy-rolebinding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -32460,7 +33303,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: kserve-controller-manager
-  namespace: kserve
+  namespace: kubeflow
 ---
 apiVersion: v1
 data:
@@ -32685,29 +33528,30 @@ data:
     \"1\",\n       \n       # defaultUrl specifies the default logger url. If logger
     is not specified in the resource this url is used.\n       \"defaultUrl\": \"http://default-broker\"\n
     \  }\n \n # ====================================== BATCHER CONFIGURATION ======================================\n
-    # Example\n batcher: |-\n   {\n       \"image\" : \"kserve/agent:v0.15.0\",\n       \"memoryRequest\":
-    \"1Gi\",\n       \"memoryLimit\": \"1Gi\",\n       \"cpuRequest\": \"1\",\n       \"cpuLimit\":
-    \"1\",\n       \"maxBatchSize\": \"32\",\n       \"maxLatency\": \"5000\"\n   }\n
-    batcher: |-\n   {\n       # image contains the default batcher image uri.\n       \"image\"
-    : \"kserve/agent:v0.15.0\",\n       \n       # memoryRequest is the requests.memory
-    to set for the batcher container.\n       \"memoryRequest\": \"1Gi\",\n   \n       #
-    memoryLimit is the limits.memory to set for the batcher container.\n       \"memoryLimit\":
-    \"1Gi\",\n       \n       # cpuRequest is the requests.cpu to set for the batcher
-    container.\n       \"cpuRequest\": \"1\",\n       \n       # cpuLimit is the limits.cpu
-    to set for the batcher container.\n       \"cpuLimit\": \"1\"\n\n       # maxBatchSize
-    is the default maximum batch size for batcher.\n       \"maxBatchSize\": \"32\",\n\n
-    \      # maxLatency is the default maximum latency in milliseconds for batcher
-    to wait and collect the batch.\n       \"maxLatency\": \"5000\"\n   }\n \n # ======================================
+    # Example\n batcher: |-\n   {\n       \"image\" : \"kserve/agent:v0.15.0\",\n
+    \      \"memoryRequest\": \"1Gi\",\n       \"memoryLimit\": \"1Gi\",\n       \"cpuRequest\":
+    \"1\",\n       \"cpuLimit\": \"1\",\n       \"maxBatchSize\": \"32\",\n       \"maxLatency\":
+    \"5000\"\n   }\n batcher: |-\n   {\n       # image contains the default batcher
+    image uri.\n       \"image\" : \"kserve/agent:v0.15.0\",\n       \n       # memoryRequest
+    is the requests.memory to set for the batcher container.\n       \"memoryRequest\":
+    \"1Gi\",\n   \n       # memoryLimit is the limits.memory to set for the batcher
+    container.\n       \"memoryLimit\": \"1Gi\",\n       \n       # cpuRequest is
+    the requests.cpu to set for the batcher container.\n       \"cpuRequest\": \"1\",\n
+    \      \n       # cpuLimit is the limits.cpu to set for the batcher container.\n
+    \      \"cpuLimit\": \"1\"\n\n       # maxBatchSize is the default maximum batch
+    size for batcher.\n       \"maxBatchSize\": \"32\",\n\n       # maxLatency is
+    the default maximum latency in milliseconds for batcher to wait and collect the
+    batch.\n       \"maxLatency\": \"5000\"\n   }\n \n # ======================================
     AGENT CONFIGURATION ======================================\n # Example\n agent:
     |-\n   {\n       \"image\" : \"kserve/agent:v0.15.0\",\n       \"memoryRequest\":
     \"100Mi\",\n       \"memoryLimit\": \"1Gi\",\n       \"cpuRequest\": \"100m\",\n
     \      \"cpuLimit\": \"1\"\n   }\n agent: |-\n   {\n       # image contains the
-    default agent image uri.\n       \"image\" : \"kserve/agent:v0.15.0\",\n   \n       #
-    memoryRequest is the requests.memory to set for the agent container.\n       \"memoryRequest\":
-    \"100Mi\",\n   \n       # memoryLimit is the limits.memory to set for the agent
-    container.\n       \"memoryLimit\": \"1Gi\",\n       \n       # cpuRequest is
-    the requests.cpu to set for the agent container.\n       \"cpuRequest\": \"100m\",\n
-    \      \n       # cpuLimit is the limits.cpu to set for the agent container.\n
+    default agent image uri.\n       \"image\" : \"kserve/agent:v0.15.0\",\n   \n
+    \      # memoryRequest is the requests.memory to set for the agent container.\n
+    \      \"memoryRequest\": \"100Mi\",\n   \n       # memoryLimit is the limits.memory
+    to set for the agent container.\n       \"memoryLimit\": \"1Gi\",\n       \n       #
+    cpuRequest is the requests.cpu to set for the agent container.\n       \"cpuRequest\":
+    \"100m\",\n       \n       # cpuLimit is the limits.cpu to set for the agent container.\n
     \      \"cpuLimit\": \"1\"\n   }\n \n # ======================================
     ROUTER CONFIGURATION ======================================\n # Example\n router:
     |-\n   {\n       \"image\" : \"kserve/router:v0.15.0\",\n       \"memoryRequest\":
@@ -32846,13 +33690,20 @@ data:
           "memoryRequest": "2Gi"
         }
     }
-  ingress: "{   \n    \"enableGatewayApi\": false,\n    \"kserveIngressGateway\":
-    \"kserve/kserve-ingress-gateway\",\n    \"ingressGateway\" : \"knative-serving/knative-ingress-gateway\",\n
-    \   \"localGateway\" : \"knative-serving/knative-local-gateway\",\n    \"localGatewayService\"
-    : \"knative-local-gateway.istio-system.svc.cluster.local\",\n    \"ingressDomain\"
-    \ : \"example.com\",\n    \"ingressClassName\" : \"istio\",\n    \"domainTemplate\":
-    \"{{ .Name }}-{{ .Namespace }}.{{ .IngressDomain }}\",\n    \"urlScheme\": \"http\",\n
-    \   \"disableIstioVirtualHost\": false,\n    \"disableIngressCreation\": false\n}"
+  ingress: |-
+    {
+      "enableGatewayApi": false,
+      "kserveIngressGateway": "kserve/kserve-ingress-gateway",
+      "ingressGateway": "kubeflow/kubeflow-gateway",
+      "localGateway": "knative-serving/knative-local-gateway",
+      "localGatewayService": "knative-local-gateway.istio-system.svc.cluster.local",
+      "ingressDomain": "example.com",
+      "ingressClassName": "istio",
+      "domainTemplate": "{{ .Name }}-{{ .Namespace }}.{{ .IngressDomain }}",
+      "urlScheme": "http",
+      "disableIstioVirtualHost": false,
+      "disableIngressCreation": false
+    }
   localModel: |-
     {
       "enabled": false,
@@ -32909,77 +33760,264 @@ data:
     }
 kind: ConfigMap
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: inferenceservice-config
-  namespace: kserve
+  namespace: kubeflow
 ---
 apiVersion: v1
 kind: Secret
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: kserve-webhook-server-secret
-  namespace: kserve
+  namespace: kubeflow
 ---
 apiVersion: v1
 kind: Service
 metadata:
   annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
     prometheus.io/port: "8443"
     prometheus.io/scheme: https
     prometheus.io/scrape: "true"
   labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
     control-plane: kserve-controller-manager
     controller-tools.k8s.io: "1.0"
   name: kserve-controller-manager-metrics-service
-  namespace: kserve
+  namespace: kubeflow
 spec:
   ports:
   - name: https
     port: 8443
     targetPort: https
   selector:
+    app: kserve
+    app.kubernetes.io/name: kserve
     control-plane: kserve-controller-manager
     controller-tools.k8s.io: "1.0"
 ---
 apiVersion: v1
 kind: Service
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
   labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
     control-plane: kserve-controller-manager
     controller-tools.k8s.io: "1.0"
   name: kserve-controller-manager-service
-  namespace: kserve
+  namespace: kubeflow
 spec:
   ports:
   - port: 8443
     protocol: TCP
     targetPort: https
   selector:
+    app: kserve
+    app.kubernetes.io/name: kserve
     control-plane: kserve-controller-manager
     controller-tools.k8s.io: "1.0"
 ---
 apiVersion: v1
 kind: Service
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/models-web-app/base/service.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/component: kserve-models-web-app
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
+    kustomize.component: kserve-models-web-app
+  name: kserve-models-web-app
+  namespace: kubeflow
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: kserve
+    app.kubernetes.io/component: kserve-models-web-app
+    app.kubernetes.io/name: kserve
+    kustomize.component: kserve-models-web-app
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: kserve-webhook-server-service
-  namespace: kserve
+  namespace: kubeflow
 spec:
   ports:
   - port: 443
     targetPort: webhook-server
   selector:
+    app: kserve
+    app.kubernetes.io/name: kserve
     control-plane: kserve-controller-manager
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
   labels:
-    app.kubernetes.io/name: kserve-controller-manager
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
     control-plane: kserve-controller-manager
     controller-tools.k8s.io: "1.0"
   name: kserve-controller-manager
-  namespace: kserve
+  namespace: kubeflow
 spec:
   selector:
     matchLabels:
+      app: kserve
+      app.kubernetes.io/name: kserve
       control-plane: kserve-controller-manager
       controller-tools.k8s.io: "1.0"
   template:
@@ -32987,9 +34025,11 @@ spec:
       annotations:
         kubectl.kubernetes.io/default-container: manager
       labels:
-        app.kubernetes.io/name: kserve-controller-manager
+        app: kserve
+        app.kubernetes.io/name: kserve
         control-plane: kserve-controller-manager
         controller-tools.k8s.io: "1.0"
+        sidecar.istio.io/inject: "false"
     spec:
       containers:
       - args:
@@ -33066,6 +34106,8 @@ spec:
           runAsNonRoot: true
       securityContext:
         runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
       serviceAccountName: kserve-controller-manager
       terminationGracePeriodSeconds: 10
       volumes:
@@ -33077,15 +34119,35 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
   labels:
-    app.kubernetes.io/name: kserve-localmodel-controller-manager
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
     control-plane: kserve-localmodel-controller-manager
     controller-tools.k8s.io: "1.0"
   name: kserve-localmodel-controller-manager
-  namespace: kserve
+  namespace: kubeflow
 spec:
   selector:
     matchLabels:
+      app: kserve
+      app.kubernetes.io/name: kserve
       control-plane: kserve-localmodel-controller-manager
       controller-tools.k8s.io: "1.0"
   template:
@@ -33093,7 +34155,8 @@ spec:
       annotations:
         kubectl.kubernetes.io/default-container: manager
       labels:
-        app.kubernetes.io/name: kserve-localmodel-controller-manager
+        app: kserve
+        app.kubernetes.io/name: kserve
         control-plane: kserve-localmodel-controller-manager
         controller-tools.k8s.io: "1.0"
     spec:
@@ -33125,87 +34188,148 @@ spec:
           runAsNonRoot: true
       securityContext:
         runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
       serviceAccountName: kserve-localmodel-controller-manager
       terminationGracePeriodSeconds: 10
 ---
 apiVersion: apps/v1
-kind: DaemonSet
+kind: Deployment
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/models-web-app/base/deployment.yaml
   labels:
-    app.kubernetes.io/name: kserve-localmodelnode-agent
-    control-plane: kserve-localmodelnode-agent
-    controller-tools.k8s.io: "1.0"
-  name: kserve-localmodelnode-agent
-  namespace: kserve
+    app: kserve
+    app.kubernetes.io/component: kserve-models-web-app
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
+    kustomize.component: kserve-models-web-app
+  name: kserve-models-web-app
+  namespace: kubeflow
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      control-plane: kserve-localmodelnode-agent
-      controller-tools.k8s.io: "1.0"
+      app: kserve
+      app.kubernetes.io/component: kserve-models-web-app
+      app.kubernetes.io/name: kserve
+      kustomize.component: kserve-models-web-app
   template:
     metadata:
-      annotations:
-        kubectl.kubernetes.io/default-container: manager
       labels:
-        app.kubernetes.io/name: kserve-localmodelnode-agent
-        control-plane: kserve-localmodelnode-agent
-        controller-tools.k8s.io: "1.0"
+        app: kserve
+        app.kubernetes.io/component: kserve-models-web-app
+        app.kubernetes.io/name: kserve
+        kustomize.component: kserve-models-web-app
+        sidecar.istio.io/inject: "true"
     spec:
       containers:
-      - command:
-        - /manager
-        env:
-        - name: POD_NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-        - name: NODE_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
-        image: kserve/kserve-localmodelnode-agent:v0.15.0
+      - envFrom:
+        - configMapRef:
+            name: kserve-models-web-app-config
+        image: ghcr.io/kserve/models-web-app:v0.14.0
         imagePullPolicy: IfNotPresent
-        name: manager
-        resources:
-          limits:
-            cpu: 100m
-            memory: 300Mi
-          requests:
-            cpu: 100m
-            memory: 200Mi
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz/liveness
+            port: http
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: kserve-models-web-app
+        ports:
+        - containerPort: 5000
+          name: http
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz/readiness
+            port: http
+          initialDelaySeconds: 0
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
             drop:
             - ALL
-          privileged: false
-          readOnlyRootFilesystem: true
-          runAsNonRoot: true
-        volumeMounts:
-        - mountPath: /mnt/models
-          name: models
-          readOnly: false
-      nodeSelector:
-        kserve/localmodel: worker
+          runAsUser: 1000
       securityContext:
         runAsNonRoot: true
-      serviceAccountName: kserve-localmodelnode-agent
-      terminationGracePeriodSeconds: 10
-      volumes:
-      - hostPath:
-          path: /models
-          type: DirectoryOrCreate
-        name: models
+        seccompProfile:
+          type: RuntimeDefault
+      serviceAccountName: kserve-models-web-app
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: serving-cert
-  namespace: kserve
+  namespace: kubeflow
 spec:
-  commonName: kserve-webhook-server-service.kserve.svc
+  commonName: kserve-webhook-server-service.kubeflow.svc
   dnsNames:
-  - kserve-webhook-server-service.kserve.svc
+  - kserve-webhook-server-service.kubeflow.svc
   issuerRef:
     kind: Issuer
     name: selfsigned-issuer
@@ -33214,74 +34338,1041 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: selfsigned-issuer
-  namespace: kserve
+  namespace: kubeflow
 spec:
   selfSigned: {}
 ---
-apiVersion: admissionregistration.k8s.io/v1
-kind: MutatingWebhookConfiguration
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: kserve/serving-cert
-  creationTimestamp: null
-  name: inferenceservice.serving.kserve.io
-webhooks:
-- admissionReviewVersions:
-  - v1beta1
-  clientConfig:
-    service:
-      name: kserve-webhook-server-service
-      namespace: kserve
-      path: /mutate-serving-kserve-io-v1beta1-inferenceservice
-  failurePolicy: Fail
-  name: inferenceservice.kserve-webhook-server.defaulter
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/models-web-app/base/istio.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/component: kserve-models-web-app
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
+    kustomize.component: kserve-models-web-app
+  name: kserve-models-web-app
+  namespace: kubeflow
+spec:
+  gateways:
+  - kubeflow/kubeflow-gateway
+  hosts:
+  - '*'
+  http:
+  - match:
+    - uri:
+        prefix: /kserve-endpoints/
+    rewrite:
+      uri: /
+    route:
+    - destination:
+        host: kserve-models-web-app.kubeflow.svc.cluster.local
+        port:
+          number: 80
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/models-web-app/overlays/kubeflow/web-app-authorization-policy.yaml
+  labels:
+    app: kserve
+    app.kubernetes.io/component: kserve-models-web-app
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
+    kustomize.component: kserve-models-web-app
+  name: kserve-models-web-app
+  namespace: kubeflow
+spec:
+  action: ALLOW
   rules:
-  - apiGroups:
-    - serving.kserve.io
-    apiVersions:
-    - v1beta1
-    operations:
-    - CREATE
-    - UPDATE
+  - from:
+    - source:
+        principals:
+        - cluster.local/ns/istio-system/sa/istio-ingressgateway-service-account
+  selector:
+    matchLabels:
+      app: kserve
+      app.kubernetes.io/component: kserve-models-web-app
+      app.kubernetes.io/name: kserve
+      kustomize.component: kserve-models-web-app
+---
+apiVersion: serving.kserve.io/v1alpha1
+kind: ClusterServingRuntime
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve-cluster-resources.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: kserve-huggingfaceserver
+spec:
+  annotations:
+    prometheus.kserve.io/path: /metrics
+    prometheus.kserve.io/port: "8080"
+  containers:
+  - args:
+    - --model_name={{.Name}}
+    image: kserve/huggingfaceserver:v0.15.0
+    name: kserve-container
     resources:
-    - inferenceservices
-  sideEffects: None
-- admissionReviewVersions:
-  - v1beta1
-  clientConfig:
-    service:
-      name: kserve-webhook-server-service
-      namespace: kserve
-      path: /mutate-pods
-  failurePolicy: Fail
-  name: inferenceservice.kserve-webhook-server.pod-mutator
-  namespaceSelector:
-    matchExpressions:
-    - key: control-plane
-      operator: DoesNotExist
-  objectSelector:
-    matchExpressions:
-    - key: serving.kserve.io/inferenceservice
-      operator: Exists
-  reinvocationPolicy: IfNeeded
-  rules:
-  - apiGroups:
-    - ""
-    apiVersions:
-    - v1
-    operations:
-    - CREATE
+      limits:
+        cpu: "1"
+        memory: 2Gi
+      requests:
+        cpu: "1"
+        memory: 2Gi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      privileged: false
+      runAsNonRoot: true
+    volumeMounts:
+    - mountPath: /dev/shm
+      name: devshm
+  hostIPC: false
+  protocolVersions:
+  - v2
+  - v1
+  supportedModelFormats:
+  - autoSelect: true
+    name: huggingface
+    priority: 1
+    version: "1"
+  volumes:
+  - emptyDir:
+      medium: Memory
+    name: devshm
+---
+apiVersion: serving.kserve.io/v1alpha1
+kind: ClusterServingRuntime
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve-cluster-resources.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: kserve-huggingfaceserver-multinode
+spec:
+  annotations:
+    prometheus.kserve.io/path: /metrics
+    prometheus.kserve.io/port: "8080"
+  containers:
+  - args:
+    - --model_name={{.Name}}
+    command:
+    - bash
+    - -c
+    - "export MODEL=${MODEL_ID}\nif [[ ! -z ${MODEL_DIR} ]]\nthen\n  export MODEL=${MODEL_DIR}\nfi\n\nexport
+      RAY_ADDRESS=${POD_IP}:${RAY_PORT}\nray start --head --disable-usage-stats --include-dashboard
+      false \npython ./huggingfaceserver/health_check.py registered_nodes --retries
+      200  --probe_name runtime_start\n\npython -m huggingfaceserver --model_dir=${MODEL}
+      --tensor-parallel-size=${TENSOR_PARALLEL_SIZE} --pipeline-parallel-size=${PIPELINE_PARALLEL_SIZE}
+      $0 $@\n"
+    env:
+    - name: RAY_PORT
+      value: "6379"
+    - name: POD_NAMESPACE
+      valueFrom:
+        fieldRef:
+          fieldPath: metadata.namespace
+    - name: POD_IP
+      valueFrom:
+        fieldRef:
+          fieldPath: status.podIP
+    - name: VLLM_CONFIG_ROOT
+      value: /tmp
+    - name: HF_HUB_CACHE
+      value: /tmp
+    image: kserve/huggingfaceserver:v0.15.0-gpu
+    livenessProbe:
+      exec:
+        command:
+        - bash
+        - -c
+        - |
+          python ./huggingfaceserver/health_check.py registered_node_and_runtime_health --health_check_url http://localhost:8080 --probe_name head_liveness
+      failureThreshold: 2
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 15
+    name: kserve-container
+    readinessProbe:
+      exec:
+        command:
+        - bash
+        - -c
+        - |
+          python ./huggingfaceserver/health_check.py runtime_health --health_check_url http://localhost:8080 --probe_name head_readiness
+      failureThreshold: 2
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 15
     resources:
-    - pods
-  sideEffects: None
+      limits:
+        cpu: "4"
+        memory: 12Gi
+      requests:
+        cpu: "2"
+        memory: 6Gi
+    startupProbe:
+      exec:
+        command:
+        - bash
+        - -c
+        - |
+          python ./huggingfaceserver/health_check.py registered_node_and_runtime_health --health_check_url http://localhost:8080 --probe_name head_startup
+      failureThreshold: 40
+      initialDelaySeconds: 60
+      periodSeconds: 30
+      successThreshold: 1
+      timeoutSeconds: 30
+    volumeMounts:
+    - mountPath: /dev/shm
+      name: shm
+  protocolVersions:
+  - v2
+  - v1
+  supportedModelFormats:
+  - autoSelect: true
+    name: huggingface
+    priority: 2
+    version: "1"
+  volumes:
+  - emptyDir:
+      medium: Memory
+      sizeLimit: 3Gi
+    name: shm
+  workerSpec:
+    containers:
+    - command:
+      - bash
+      - -c
+      - "export RAY_HEAD_ADDRESS=${HEAD_SVC}.${POD_NAMESPACE}.svc.cluster.local:6379\nSECONDS=0\n\nwhile
+        true; do              \n  if (( SECONDS <= 240 )); then\n    if ray health-check
+        --address \"${RAY_HEAD_ADDRESS}\" > /dev/null 2>&1; then\n      echo \"Ray
+        Global Control Service(GCS) is ready.\"\n      break\n    fi\n    echo \"$SECONDS
+        seconds elapsed: Waiting for Ray Global Control Service(GCS) to be ready.\"\n
+        \ else\n    if ray health-check --address \"${RAY_HEAD_ADDRESS}\"; then\n
+        \     echo \"Ray Global Control Service(GCS) is ready. Any error messages
+        above can be safely ignored.\"\n      break\n    fi\n    echo \"$SECONDS seconds
+        elapsed: Still waiting for Ray Global Control Service(GCS) to be ready.\"\n
+        \ fi\n\n  sleep 5\ndone\n\necho \"Attempting to connect to Ray cluster at
+        $RAY_HEAD_ADDRESS ...\"\nray start --address=\"${RAY_HEAD_ADDRESS}\" --block\n"
+      env:
+      - name: POD_NAME
+        valueFrom:
+          fieldRef:
+            fieldPath: metadata.name
+      - name: POD_NAMESPACE
+        valueFrom:
+          fieldRef:
+            fieldPath: metadata.namespace
+      image: kserve/huggingfaceserver:v0.15.0-gpu
+      livenessProbe:
+        exec:
+          command:
+          - bash
+          - -c
+          - |
+            export RAY_ADDRESS=${HEAD_SVC}.${POD_NAMESPACE}.svc.cluster.local:6379
+            python ./huggingfaceserver/health_check.py registered_nodes --probe_name worker_liveness
+        failureThreshold: 2
+        periodSeconds: 5
+        successThreshold: 1
+        timeoutSeconds: 15
+      name: worker-container
+      resources:
+        limits:
+          cpu: "4"
+          memory: 12Gi
+        requests:
+          cpu: "2"
+          memory: 6Gi
+      startupProbe:
+        exec:
+          command:
+          - bash
+          - -c
+          - |
+            export RAY_HEAD_NODE=${HEAD_SVC}.${POD_NAMESPACE}.svc.cluster.local
+            export RAY_ADDRESS=${RAY_HEAD_NODE}:6379
+            python ./huggingfaceserver/health_check.py registered_node_and_runtime_models --runtime_url http://${RAY_HEAD_NODE}:8080/v1/models --probe_name worker_startup
+        failureThreshold: 40
+        initialDelaySeconds: 60
+        periodSeconds: 30
+        successThreshold: 1
+        timeoutSeconds: 30
+      volumeMounts:
+      - mountPath: /dev/shm
+        name: shm
+    pipelineParallelSize: 2
+    tensorParallelSize: 1
+    volumes:
+    - emptyDir:
+        medium: Memory
+        sizeLimit: 3Gi
+      name: shm
+---
+apiVersion: serving.kserve.io/v1alpha1
+kind: ClusterServingRuntime
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve-cluster-resources.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: kserve-lgbserver
+spec:
+  annotations:
+    prometheus.kserve.io/path: /metrics
+    prometheus.kserve.io/port: "8080"
+  containers:
+  - args:
+    - --model_name={{.Name}}
+    - --model_dir=/mnt/models
+    - --http_port=8080
+    - --nthread=1
+    image: kserve/lgbserver:v0.15.0
+    name: kserve-container
+    resources:
+      limits:
+        cpu: "1"
+        memory: 2Gi
+      requests:
+        cpu: "1"
+        memory: 2Gi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      privileged: false
+      runAsNonRoot: true
+  protocolVersions:
+  - v1
+  - v2
+  supportedModelFormats:
+  - autoSelect: true
+    name: lightgbm
+    priority: 1
+    version: "3"
+---
+apiVersion: serving.kserve.io/v1alpha1
+kind: ClusterServingRuntime
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve-cluster-resources.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: kserve-mlserver
+spec:
+  annotations:
+    prometheus.kserve.io/path: /metrics
+    prometheus.kserve.io/port: "8080"
+  containers:
+  - env:
+    - name: MLSERVER_MODEL_IMPLEMENTATION
+      value: '{{.Labels.modelClass}}'
+    - name: MLSERVER_HTTP_PORT
+      value: "8080"
+    - name: MLSERVER_GRPC_PORT
+      value: "9000"
+    - name: MODELS_DIR
+      value: /mnt/models
+    image: docker.io/seldonio/mlserver:1.5.0
+    name: kserve-container
+    resources:
+      limits:
+        cpu: "1"
+        memory: 2Gi
+      requests:
+        cpu: "1"
+        memory: 2Gi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      privileged: false
+      runAsNonRoot: true
+  protocolVersions:
+  - v2
+  supportedModelFormats:
+  - autoSelect: true
+    name: sklearn
+    priority: 2
+    version: "0"
+  - autoSelect: true
+    name: sklearn
+    priority: 2
+    version: "1"
+  - autoSelect: true
+    name: xgboost
+    priority: 2
+    version: "1"
+  - autoSelect: true
+    name: xgboost
+    priority: 2
+    version: "2"
+  - autoSelect: true
+    name: lightgbm
+    priority: 2
+    version: "3"
+  - autoSelect: true
+    name: lightgbm
+    priority: 2
+    version: "4"
+  - autoSelect: true
+    name: mlflow
+    priority: 1
+    version: "1"
+  - autoSelect: true
+    name: mlflow
+    priority: 1
+    version: "2"
+---
+apiVersion: serving.kserve.io/v1alpha1
+kind: ClusterServingRuntime
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve-cluster-resources.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: kserve-paddleserver
+spec:
+  annotations:
+    prometheus.kserve.io/path: /metrics
+    prometheus.kserve.io/port: "8080"
+  containers:
+  - args:
+    - --model_name={{.Name}}
+    - --model_dir=/mnt/models
+    - --http_port=8080
+    image: kserve/paddleserver:v0.15.0
+    name: kserve-container
+    resources:
+      limits:
+        cpu: "1"
+        memory: 2Gi
+      requests:
+        cpu: "1"
+        memory: 2Gi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      privileged: false
+      runAsNonRoot: true
+  protocolVersions:
+  - v1
+  - v2
+  supportedModelFormats:
+  - autoSelect: true
+    name: paddle
+    priority: 1
+    version: "2"
+---
+apiVersion: serving.kserve.io/v1alpha1
+kind: ClusterServingRuntime
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve-cluster-resources.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: kserve-pmmlserver
+spec:
+  annotations:
+    prometheus.kserve.io/path: /metrics
+    prometheus.kserve.io/port: "8080"
+  containers:
+  - args:
+    - --model_name={{.Name}}
+    - --model_dir=/mnt/models
+    - --http_port=8080
+    image: kserve/pmmlserver:v0.15.0
+    name: kserve-container
+    resources:
+      limits:
+        cpu: "1"
+        memory: 2Gi
+      requests:
+        cpu: "1"
+        memory: 2Gi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      privileged: false
+      runAsNonRoot: true
+  protocolVersions:
+  - v1
+  - v2
+  supportedModelFormats:
+  - autoSelect: true
+    name: pmml
+    priority: 1
+    version: "3"
+  - autoSelect: true
+    name: pmml
+    priority: 1
+    version: "4"
+---
+apiVersion: serving.kserve.io/v1alpha1
+kind: ClusterServingRuntime
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve-cluster-resources.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: kserve-sklearnserver
+spec:
+  annotations:
+    prometheus.kserve.io/path: /metrics
+    prometheus.kserve.io/port: "8080"
+  containers:
+  - args:
+    - --model_name={{.Name}}
+    - --model_dir=/mnt/models
+    - --http_port=8080
+    image: kserve/sklearnserver:v0.15.0
+    name: kserve-container
+    resources:
+      limits:
+        cpu: "1"
+        memory: 2Gi
+      requests:
+        cpu: "1"
+        memory: 2Gi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      privileged: false
+      runAsNonRoot: true
+  protocolVersions:
+  - v1
+  - v2
+  supportedModelFormats:
+  - autoSelect: true
+    name: sklearn
+    priority: 1
+    version: "1"
+---
+apiVersion: serving.kserve.io/v1alpha1
+kind: ClusterServingRuntime
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve-cluster-resources.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: kserve-tensorflow-serving
+spec:
+  annotations:
+    prometheus.kserve.io/path: /metrics
+    prometheus.kserve.io/port: "8080"
+  containers:
+  - args:
+    - --model_name={{.Name}}
+    - --port=9000
+    - --rest_api_port=8080
+    - --model_base_path=/mnt/models
+    - --rest_api_timeout_in_ms=60000
+    command:
+    - /usr/bin/tensorflow_model_server
+    image: tensorflow/serving:2.6.2
+    name: kserve-container
+    resources:
+      limits:
+        cpu: "1"
+        memory: 2Gi
+      requests:
+        cpu: "1"
+        memory: 2Gi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      privileged: false
+      runAsNonRoot: true
+      runAsUser: 1000
+  protocolVersions:
+  - v1
+  - grpc-v1
+  supportedModelFormats:
+  - autoSelect: true
+    name: tensorflow
+    priority: 2
+    version: "1"
+  - autoSelect: true
+    name: tensorflow
+    priority: 2
+    version: "2"
+---
+apiVersion: serving.kserve.io/v1alpha1
+kind: ClusterServingRuntime
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve-cluster-resources.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: kserve-torchserve
+spec:
+  annotations:
+    prometheus.kserve.io/path: /metrics
+    prometheus.kserve.io/port: "8082"
+  containers:
+  - args:
+    - torchserve
+    - --start
+    - --model-store=/mnt/models/model-store
+    - --ts-config=/mnt/models/config/config.properties
+    env:
+    - name: TS_SERVICE_ENVELOPE
+      value: '{{.Labels.serviceEnvelope}}'
+    image: pytorch/torchserve-kfs:0.9.0
+    name: kserve-container
+    resources:
+      limits:
+        cpu: "1"
+        memory: 2Gi
+      requests:
+        cpu: "1"
+        memory: 2Gi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      privileged: false
+      runAsNonRoot: true
+      runAsUser: 1000
+  protocolVersions:
+  - v1
+  - v2
+  - grpc-v2
+  supportedModelFormats:
+  - autoSelect: true
+    name: pytorch
+    priority: 2
+    version: "1"
+---
+apiVersion: serving.kserve.io/v1alpha1
+kind: ClusterServingRuntime
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve-cluster-resources.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: kserve-tritonserver
+spec:
+  annotations:
+    prometheus.kserve.io/path: /metrics
+    prometheus.kserve.io/port: "8002"
+  containers:
+  - args:
+    - tritonserver
+    - --model-store=/mnt/models
+    - --grpc-port=9000
+    - --http-port=8080
+    - --allow-grpc=true
+    - --allow-http=true
+    image: nvcr.io/nvidia/tritonserver:23.05-py3
+    name: kserve-container
+    resources:
+      limits:
+        cpu: "1"
+        memory: 2Gi
+      requests:
+        cpu: "1"
+        memory: 2Gi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      privileged: false
+      runAsNonRoot: true
+      runAsUser: 1000
+  protocolVersions:
+  - v2
+  - grpc-v2
+  supportedModelFormats:
+  - autoSelect: true
+    name: tensorrt
+    priority: 1
+    version: "8"
+  - autoSelect: true
+    name: tensorflow
+    priority: 1
+    version: "1"
+  - autoSelect: true
+    name: tensorflow
+    priority: 1
+    version: "2"
+  - autoSelect: true
+    name: onnx
+    priority: 1
+    version: "1"
+  - name: pytorch
+    version: "1"
+  - autoSelect: true
+    name: triton
+    priority: 1
+    version: "2"
+---
+apiVersion: serving.kserve.io/v1alpha1
+kind: ClusterServingRuntime
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve-cluster-resources.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: kserve-xgbserver
+spec:
+  annotations:
+    prometheus.kserve.io/path: /metrics
+    prometheus.kserve.io/port: "8080"
+  containers:
+  - args:
+    - --model_name={{.Name}}
+    - --model_dir=/mnt/models
+    - --http_port=8080
+    - --nthread=1
+    image: kserve/xgbserver:v0.15.0
+    name: kserve-container
+    resources:
+      limits:
+        cpu: "1"
+        memory: 2Gi
+      requests:
+        cpu: "1"
+        memory: 2Gi
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      privileged: false
+      runAsNonRoot: true
+  protocolVersions:
+  - v1
+  - v2
+  supportedModelFormats:
+  - autoSelect: true
+    name: xgboost
+    priority: 1
+    version: "1"
+---
+apiVersion: serving.kserve.io/v1alpha1
+kind: ClusterStorageContainer
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve-cluster-resources.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: default
+spec:
+  container:
+    image: kserve/storage-initializer:v0.15.0
+    name: storage-initializer
+    resources:
+      limits:
+        cpu: "1"
+        memory: 1Gi
+      requests:
+        cpu: 100m
+        memory: 100Mi
+  supportedUriFormats:
+  - prefix: gs://
+  - prefix: s3://
+  - prefix: hdfs://
+  - prefix: hf://
+  - prefix: webhdfs://
+  - regex: https://(.+?).blob.core.windows.net/(.+)
+  - regex: https://(.+?).file.core.windows.net/(.+)
+  - regex: https?://(.+)/(.+)
+  workloadType: initContainer
 ---
 apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: kserve/serving-cert
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    cert-manager.io/inject-ca-from: kubeflow/serving-cert
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
   creationTimestamp: null
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: clusterservingruntime.serving.kserve.io
 webhooks:
 - admissionReviewVersions:
@@ -33289,7 +35380,7 @@ webhooks:
   clientConfig:
     service:
       name: kserve-webhook-server-service
-      namespace: kserve
+      namespace: kubeflow
       path: /validate-serving-kserve-io-v1alpha1-clusterservingruntime
   failurePolicy: Fail
   name: clusterservingruntime.kserve-webhook-server.validator
@@ -33309,8 +35400,27 @@ apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: kserve/serving-cert
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    cert-manager.io/inject-ca-from: kubeflow/serving-cert
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
   creationTimestamp: null
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: inferencegraph.serving.kserve.io
 webhooks:
 - admissionReviewVersions:
@@ -33318,7 +35428,7 @@ webhooks:
   clientConfig:
     service:
       name: kserve-webhook-server-service
-      namespace: kserve
+      namespace: kubeflow
       path: /validate-serving-kserve-io-v1alpha1-inferencegraph
   failurePolicy: Fail
   name: inferencegraph.kserve-webhook-server.validator
@@ -33338,8 +35448,27 @@ apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: kserve/serving-cert
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    cert-manager.io/inject-ca-from: kubeflow/serving-cert
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
   creationTimestamp: null
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: inferenceservice.serving.kserve.io
 webhooks:
 - admissionReviewVersions:
@@ -33347,7 +35476,7 @@ webhooks:
   clientConfig:
     service:
       name: kserve-webhook-server-service
-      namespace: kserve
+      namespace: kubeflow
       path: /validate-serving-kserve-io-v1beta1-inferenceservice
   failurePolicy: Fail
   name: inferenceservice.kserve-webhook-server.validator
@@ -33367,8 +35496,27 @@ apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: kserve/serving-cert
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    cert-manager.io/inject-ca-from: kubeflow/serving-cert
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
   creationTimestamp: null
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: localmodelcache.serving.kserve.io
 webhooks:
 - admissionReviewVersions:
@@ -33376,7 +35524,7 @@ webhooks:
   clientConfig:
     service:
       name: kserve-webhook-server-service
-      namespace: kserve
+      namespace: kubeflow
       path: /validate-serving-kserve-io-v1alpha1-localmodelcache
   failurePolicy: Fail
   name: localmodelcache.kserve-webhook-server.validator
@@ -33397,8 +35545,27 @@ apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: kserve/serving-cert
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    cert-manager.io/inject-ca-from: kubeflow/serving-cert
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
   creationTimestamp: null
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: servingruntime.serving.kserve.io
 webhooks:
 - admissionReviewVersions:
@@ -33406,7 +35573,7 @@ webhooks:
   clientConfig:
     service:
       name: kserve-webhook-server-service
-      namespace: kserve
+      namespace: kubeflow
       path: /validate-serving-kserve-io-v1alpha1-servingruntime
   failurePolicy: Fail
   name: servingruntime.kserve-webhook-server.validator
@@ -33426,8 +35593,27 @@ apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
   annotations:
-    cert-manager.io/inject-ca-from: kserve/serving-cert
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/kserve/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+    cert-manager.io/inject-ca-from: kubeflow/serving-cert
+    config.kubernetes.io/origin: |
+      path: ../applications/kserve/kserve/kserve_kubeflow.yaml
   creationTimestamp: null
+  labels:
+    app: kserve
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
   name: trainedmodel.serving.kserve.io
 webhooks:
 - admissionReviewVersions:
@@ -33435,7 +35621,7 @@ webhooks:
   clientConfig:
     service:
       name: kserve-webhook-server-service
-      namespace: kserve
+      namespace: kubeflow
       path: /validate-serving-kserve-io-v1alpha1-trainedmodel
   failurePolicy: Fail
   name: trainedmodel.kserve-webhook-server.validator
@@ -33450,3 +35636,61 @@ webhooks:
     resources:
     - trainedmodels
   sideEffects: None
+---
+apiVersion: v1
+data:
+  APP_PREFIX: /kserve-endpoints
+  USERID_HEADER: kubeflow-userid
+kind: ConfigMap
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+    config.kubernetes.io/origin: |
+      configuredIn: ../applications/kserve/models-web-app/overlays/kubeflow/kustomization.yaml
+      configuredBy:
+        apiVersion: builtin
+        kind: ConfigMapGenerator
+  labels:
+    app: kserve
+    app.kubernetes.io/component: kserve-models-web-app
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    app.kubernetes.io/name: kserve
+    kustomize.component: kserve-models-web-app
+  name: kserve-models-web-app-config
+  namespace: kubeflow

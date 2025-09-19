@@ -1,0 +1,1439 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PrefixTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboard-controller/upstream/crd/bases/tensorboard.kubeflow.org_tensorboards.yaml
+    controller-gen.kubebuilder.io/version: v0.8.0
+  creationTimestamp: null
+  labels:
+    app: tensorboard-controller
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    kustomize.component: tensorboard-controller
+  name: tensorboards.tensorboard.kubeflow.org
+spec:
+  group: tensorboard.kubeflow.org
+  names:
+    kind: Tensorboard
+    listKind: TensorboardList
+    plural: tensorboards
+    singular: tensorboard
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: Tensorboard is the Schema for the tensorboards API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: TensorboardSpec defines the desired state of Tensorboard
+            properties:
+              logspath:
+                description: 'INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
+                  Important: Run "make" to regenerate code after modifying this file'
+                type: string
+            required:
+            - logspath
+            type: object
+          status:
+            description: TensorboardStatus defines the observed state of Tensorboard
+            properties:
+              conditions:
+                description: Conditions is an array of current conditions
+                items:
+                  description: TensorboardCondition defines the observed state of
+                    Tensorboard
+                  properties:
+                    deploymentState:
+                      description: Deployment status, 'Available', 'Progressing',
+                        'ReplicaFailure' .
+                      type: string
+                    lastProbeTime:
+                      description: Last time we probed the condition.
+                      format: date-time
+                      type: string
+                  required:
+                  - deploymentState
+                  type: object
+                type: array
+              readyReplicas:
+                description: ReadyReplicas defines the number of Tensorboard Servers
+                  that are available to connect. The value of ReadyReplicas can be
+                  either 0 or 1
+                format: int32
+                type: integer
+            required:
+            - conditions
+            - readyReplicas
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PrefixTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboard-controller/upstream/rbac/service_account.yaml
+  labels:
+    app: tensorboard-controller
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    kustomize.component: tensorboard-controller
+  name: tensorboard-controller-controller-manager
+  namespace: kubeflow
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PrefixTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboards-web-app/upstream/base/service-account.yaml
+  labels:
+    app: tensorboards-web-app
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    kustomize.component: tensorboards-web-app
+  name: tensorboards-web-app-service-account
+  namespace: kubeflow
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PrefixTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboard-controller/upstream/rbac/leader_election_role.yaml
+  labels:
+    app: tensorboard-controller
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    kustomize.component: tensorboard-controller
+  name: tensorboard-controller-leader-election-role
+  namespace: kubeflow
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - coordination.k8s.io
+  resources:
+  - leases
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PrefixTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboard-controller/upstream/rbac/role.yaml
+  creationTimestamp: null
+  labels:
+    app: tensorboard-controller
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    kustomize.component: tensorboard-controller
+  name: tensorboard-controller-manager-role
+rules:
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - create
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - persistentvolumeclaims
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - services
+  verbs:
+  - create
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - networking.istio.io
+  resources:
+  - virtualservices
+  verbs:
+  - create
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - tensorboard.kubeflow.org
+  resources:
+  - tensorboards
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - tensorboard.kubeflow.org
+  resources:
+  - tensorboards/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - tensorboard.kubeflow.org
+  resources:
+  - tensorboards/status
+  verbs:
+  - get
+  - patch
+  - update
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PrefixTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboard-controller/upstream/rbac/auth_proxy_client_clusterrole.yaml
+  labels:
+    app: tensorboard-controller
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    kustomize.component: tensorboard-controller
+  name: tensorboard-controller-metrics-reader
+rules:
+- nonResourceURLs:
+  - /metrics
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PrefixTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboard-controller/upstream/rbac/auth_proxy_role.yaml
+  labels:
+    app: tensorboard-controller
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    kustomize.component: tensorboard-controller
+  name: tensorboard-controller-proxy-role
+rules:
+- apiGroups:
+  - authentication.k8s.io
+  resources:
+  - tokenreviews
+  verbs:
+  - create
+- apiGroups:
+  - authorization.k8s.io
+  resources:
+  - subjectaccessreviews
+  verbs:
+  - create
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PrefixTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboards-web-app/upstream/base/cluster-role.yaml
+  labels:
+    app: tensorboards-web-app
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    kustomize.component: tensorboards-web-app
+  name: tensorboards-web-app-cluster-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - namespaces
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - authorization.k8s.io
+  resources:
+  - subjectaccessreviews
+  verbs:
+  - create
+- apiGroups:
+  - tensorboard.kubeflow.org
+  resources:
+  - tensorboards
+  - tensorboards/finalizers
+  verbs:
+  - get
+  - list
+  - create
+  - delete
+- apiGroups:
+  - ""
+  resources:
+  - persistentvolumeclaims
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+- apiGroups:
+  - storage.k8s.io
+  resources:
+  - storageclasses
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - kubeflow.org
+  resources:
+  - poddefaults
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PrefixTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboards-web-app/upstream/base/cluster-role.yaml
+  labels:
+    app: tensorboards-web-app
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    kustomize.component: tensorboards-web-app
+    rbac.authorization.kubeflow.org/aggregate-to-kubeflow-admin: "true"
+  name: tensorboards-web-app-kubeflow-tensorboard-ui-admin
+rules: []
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PrefixTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboards-web-app/upstream/base/cluster-role.yaml
+  labels:
+    app: tensorboards-web-app
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    kustomize.component: tensorboards-web-app
+    rbac.authorization.kubeflow.org/aggregate-to-kubeflow-edit: "true"
+  name: tensorboards-web-app-kubeflow-tensorboard-ui-edit
+rules:
+- apiGroups:
+  - tensorboard.kubeflow.org
+  resources:
+  - tensorboards
+  - tensorboards/finalizers
+  verbs:
+  - get
+  - list
+  - create
+  - delete
+- apiGroups:
+  - kubeflow.org
+  resources:
+  - poddefaults
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PrefixTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboards-web-app/upstream/base/cluster-role.yaml
+  labels:
+    app: tensorboards-web-app
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    kustomize.component: tensorboards-web-app
+    rbac.authorization.kubeflow.org/aggregate-to-kubeflow-view: "true"
+  name: tensorboards-web-app-kubeflow-tensorboard-ui-view
+rules:
+- apiGroups:
+  - tensorboard.kubeflow.org
+  resources:
+  - tensorboards
+  - tensorboards/finalizers
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - storage.k8s.io
+  resources:
+  - storageclasses
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - kubeflow.org
+  resources:
+  - poddefaults
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PrefixTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboard-controller/upstream/rbac/leader_election_role_binding.yaml
+  labels:
+    app: tensorboard-controller
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    kustomize.component: tensorboard-controller
+  name: tensorboard-controller-leader-election-rolebinding
+  namespace: kubeflow
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: tensorboard-controller-leader-election-role
+subjects:
+- kind: ServiceAccount
+  name: tensorboard-controller-controller-manager
+  namespace: kubeflow
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PrefixTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboard-controller/upstream/rbac/role_binding.yaml
+  labels:
+    app: tensorboard-controller
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    kustomize.component: tensorboard-controller
+  name: tensorboard-controller-manager-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: tensorboard-controller-manager-role
+subjects:
+- kind: ServiceAccount
+  name: tensorboard-controller-controller-manager
+  namespace: kubeflow
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PrefixTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboard-controller/upstream/rbac/auth_proxy_role_binding.yaml
+  labels:
+    app: tensorboard-controller
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    kustomize.component: tensorboard-controller
+  name: tensorboard-controller-proxy-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: tensorboard-controller-proxy-role
+subjects:
+- kind: ServiceAccount
+  name: tensorboard-controller-controller-manager
+  namespace: kubeflow
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PrefixTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboards-web-app/upstream/base/cluster-role-binding.yaml
+  labels:
+    app: tensorboards-web-app
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    kustomize.component: tensorboards-web-app
+  name: tensorboards-web-app-cluster-role-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: tensorboards-web-app-cluster-role
+subjects:
+- kind: ServiceAccount
+  name: tensorboards-web-app-service-account
+  namespace: kubeflow
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PrefixTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboard-controller/upstream/rbac/auth_proxy_service.yaml
+  labels:
+    app: tensorboard-controller
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    control-plane: controller-manager
+    kustomize.component: tensorboard-controller
+  name: tensorboard-controller-controller-manager-metrics-service
+  namespace: kubeflow
+spec:
+  ports:
+  - name: https
+    port: 8443
+    protocol: TCP
+    targetPort: https
+  selector:
+    app: tensorboard-controller
+    control-plane: controller-manager
+    kustomize.component: tensorboard-controller
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PrefixTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboards-web-app/upstream/base/service.yaml
+  labels:
+    app: tensorboards-web-app
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    kustomize.component: tensorboards-web-app
+    run: tensorboards-web-app
+  name: tensorboards-web-app-service
+  namespace: kubeflow
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: tensorboards-web-app
+    kustomize.component: tensorboards-web-app
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PrefixTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/default/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboard-controller/upstream/manager/manager.yaml
+  labels:
+    app: tensorboard-controller
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    control-plane: controller-manager
+    kustomize.component: tensorboard-controller
+  name: tensorboard-controller-deployment
+  namespace: kubeflow
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tensorboard-controller
+      control-plane: controller-manager
+      kustomize.component: tensorboard-controller
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: manager
+      labels:
+        app: tensorboard-controller
+        control-plane: controller-manager
+        kustomize.component: tensorboard-controller
+    spec:
+      containers:
+      - args:
+        - --health-probe-bind-address=:8081
+        - --metrics-bind-address=127.0.0.1:8080
+        command:
+        - /manager
+        envFrom:
+        - configMapRef:
+            name: tensorboard-controller-config-7hd244gf2d
+        image: ghcr.io/kubeflow/kubeflow/tensorboard-controller:v1.10.0
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8081
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        name: manager
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8081
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 10m
+            memory: 64Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+      - args:
+        - --secure-listen-address=0.0.0.0:8443
+        - --upstream=http://127.0.0.1:8080/
+        - --logtostderr=true
+        - --v=0
+        image: quay.io/brancz/kube-rbac-proxy:v0.8.0
+        name: kube-rbac-proxy
+        ports:
+        - containerPort: 8443
+          name: https
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 5m
+            memory: 64Mi
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 999
+      serviceAccountName: tensorboard-controller-controller-manager
+      terminationGracePeriodSeconds: 10
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PrefixTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboards-web-app/upstream/base/deployment.yaml
+  labels:
+    app: tensorboards-web-app
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    kustomize.component: tensorboards-web-app
+  name: tensorboards-web-app-deployment
+  namespace: kubeflow
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tensorboards-web-app
+      kustomize.component: tensorboards-web-app
+  template:
+    metadata:
+      labels:
+        app: tensorboards-web-app
+        kustomize.component: tensorboards-web-app
+    spec:
+      containers:
+      - env:
+        - name: APP_PREFIX
+          value: /tensorboards
+        - name: USERID_HEADER
+          value: kubeflow-userid
+        - name: USERID_PREFIX
+          value: ""
+        - name: APP_SECURE_COOKIES
+          value: "true"
+        - name: METRICS
+          value: "1"
+        image: ghcr.io/kubeflow/kubeflow/tensorboards-web-app:v1.10.0
+        name: tensorboards-web-app
+        ports:
+        - containerPort: 5000
+      serviceAccountName: tensorboards-web-app-service-account
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/destination-rule.yaml
+  labels:
+    app: tensorboards-web-app
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    kustomize.component: tensorboards-web-app
+  name: tensorboards-web-app
+  namespace: kubeflow
+spec:
+  host: tensorboards-web-app-service.kubeflow.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/virtual-service.yaml
+  labels:
+    app: tensorboards-web-app
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    kustomize.component: tensorboards-web-app
+  name: tensorboards-web-app-tensorboards-web-app
+  namespace: kubeflow
+spec:
+  gateways:
+  - kubeflow-gateway
+  hosts:
+  - '*'
+  http:
+  - headers:
+      request:
+        add:
+          x-forwarded-prefix: /tensorboards
+    match:
+    - uri:
+        prefix: /tensorboards/
+    rewrite:
+      uri: /
+    route:
+    - destination:
+        host: tensorboards-web-app-service.kubeflow.svc.cluster.local
+        port:
+          number: 80
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+    config.kubernetes.io/origin: |
+      path: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/authorization-policy.yaml
+  labels:
+    app: tensorboards-web-app
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    kustomize.component: tensorboards-web-app
+  name: tensorboards-web-app
+  namespace: kubeflow
+spec:
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals:
+        - cluster.local/ns/istio-system/sa/istio-ingressgateway-service-account
+  selector:
+    matchLabels:
+      app: tensorboards-web-app
+---
+apiVersion: v1
+data:
+  ISTIO_GATEWAY: kubeflow/kubeflow-gateway
+  ISTIO_HOST: '*'
+  RWO_PVC_SCHEDULING: "True"
+  TENSORBOARD_IMAGE: tensorflow/tensorflow:2.5.1
+kind: ConfigMap
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PatchStrategicMergeTransformer
+      - configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/overlays/kubeflow/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+    config.kubernetes.io/origin: |
+      configuredIn: ../applications/tensorboard/tensorboard-controller/upstream/base/kustomization.yaml
+      configuredBy:
+        apiVersion: builtin
+        kind: ConfigMapGenerator
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: tensorboard-controller-config-7hd244gf2d
+  namespace: kubeflow
+---
+apiVersion: v1
+data:
+  TWA_APP_ENABLE_METRICS: "1"
+  TWA_APP_SECURE_COOKIES: "true"
+  TWA_CLUSTER_DOMAIN: cluster.local
+  TWA_PREFIX: /tensorboards
+  TWA_USERID_HEADER: kubeflow-userid
+  TWA_USERID_PREFIX: ""
+kind: ConfigMap
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: PrefixTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ImageTagTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: NamespaceTransformer
+      - configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/overlays/istio/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: LabelTransformer
+    config.kubernetes.io/origin: |
+      configuredIn: ../applications/tensorboard/tensorboards-web-app/upstream/base/kustomization.yaml
+      configuredBy:
+        apiVersion: builtin
+        kind: ConfigMapGenerator
+  labels:
+    app: tensorboards-web-app
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+    kustomize.component: tensorboards-web-app
+  name: tensorboards-web-app-parameters-6ffg2tt572
+  namespace: kubeflow

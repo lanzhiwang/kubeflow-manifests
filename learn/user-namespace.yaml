@@ -1,0 +1,39 @@
+apiVersion: kubeflow.org/v1beta1
+kind: Profile
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/user-namespace/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ReplacementTransformer
+    config.kubernetes.io/origin: |
+      path: ../common/user-namespace/base/profile-instance.yaml
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: kubeflow-user-example-com
+spec:
+  owner:
+    kind: User
+    name: user@example.com
+---
+apiVersion: v1
+data:
+  profile-name: kubeflow-user-example-com
+  user: user@example.com
+kind: ConfigMap
+metadata:
+  annotations:
+    alpha.config.kubernetes.io/transformations: |
+      - configuredIn: ../common/user-namespace/base/kustomization.yaml
+        configuredBy:
+          apiVersion: builtin
+          kind: ReplacementTransformer
+    config.kubernetes.io/origin: |
+      configuredIn: ../common/user-namespace/base/kustomization.yaml
+      configuredBy:
+        apiVersion: builtin
+        kind: ConfigMapGenerator
+  labels:
+    app.kubernetes.io/managed-by: kustomize-v5.4.3
+  name: default-install-config-9h2h2b6hbk
