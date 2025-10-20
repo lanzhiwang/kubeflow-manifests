@@ -58,3 +58,5 @@ docker.io/kserve/kserve-controller:v0.15.0
 # kserve/kserve-localmodel-controller:v0.15.0
 docker.io/kserve/kserve-localmodel-controller:v0.15.0
 public.ecr.aws/docker/library/python:3.12
+# python:3.9
+docker.io/library/python:3.9
